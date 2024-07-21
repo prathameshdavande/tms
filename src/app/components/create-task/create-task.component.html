@@ -1,0 +1,100 @@
+<p-dialog
+  [header]="taskId ? 'Edit Task' : 'Create Task'"
+  [(visible)]="display"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <!-- form -->
+  <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="email"
+        class="form-control"
+        id="title"
+        name="title"
+        ngModel
+        required
+        aria-describedby="emailHelp"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        rows="4"
+        name="description"
+        ngModel
+        required
+      ></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="priority" class="form-label">Priority</label>
+      <select
+        ngModel
+        required
+        name="priority"
+        id="priority"
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="dueDate" class="form-label">Due Date</label>
+      <input
+        type="date"
+        class="form-control"
+        id="dueDate"
+        name="dueDate"
+        ngModel
+        required
+        aria-describedby="emailHelp"
+      />
+    </div>
+    <ng-container *ngIf="taskId">
+      <label for="attachment" class="form-label">Attachment</label>
+      <div class="mb-3">
+        <input
+          type="file"
+          class="form-control"
+          id="attachment"
+          name="attachment"
+          ngModel
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="notes" class="form-label">Notes</label>
+        <textarea
+          class="form-control"
+          id="notes"
+          rows="4"
+          name="notes"
+          ngModel
+          required
+        ></textarea>
+      </div>
+    </ng-container>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</p-dialog>
+
+<button
+  type="button"
+  (click)="showDialog()"
+  icon="pi pi-info-circle"
+  label="Show"
+  class="btn btn-primary mb-4"
+>
+  Create Task
+</button>

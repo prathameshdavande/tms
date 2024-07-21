@@ -1,0 +1,28 @@
+<p-table [value]="tasks">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Employee Name</th>
+      <th>Task Name</th>
+      <th>Status</th>
+      <ng-container *ngIf="isEmployee">
+        <th>Action</th>
+      </ng-container>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-task>
+    <tr>
+      <td>{{ task.id }}</td>
+      <td>{{ task.employeeName }}</td>
+      <td>{{ task.title }}</td>
+      <td>{{ task.status }}</td>
+      <ng-container *ngIf="isEmployee">
+        <td>
+          <button class="btn btn-primary" (click)="onEditClick(task.id)">
+            Edit
+          </button>
+        </td>
+      </ng-container>
+    </tr>
+  </ng-template>
+</p-table>
